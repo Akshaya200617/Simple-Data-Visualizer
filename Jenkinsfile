@@ -1,26 +1,30 @@
 pipeline {
-
     agent any
 
     stages {
-        stage('Build Application') {
 
+        stage('Checkout') {
             steps {
-                bat 'mvn clean package'
+                git credentialsId: 'HariniGitID',
+                url: 'https://github.com/Akshaya200617/Simple-Data-Visualizer.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Build Docker Image') {
-
             steps {
-                bat 'docker build -t online-shopping-app .'
+                bat 'docker build -t data-visualizer .'
             }
         }
 
         stage('Run Docker Container') {
-
             steps {
-                bat 'docker run -d -p 8080:8080 online-shopping-app'
+                bat 'docker run -d -p 5000:5000 data-visualizer'
             }
         }
     }
