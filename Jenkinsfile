@@ -25,7 +25,7 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                docker run -d -p 5001:5000 data-visualizer
+                bat 'docker run -d -p 5001:5000 data-visualizer'
             }
         }
     }
