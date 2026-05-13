@@ -1,9 +1,11 @@
-FROM eclipse-temurin:21
+FROM python:3.11
 
 WORKDIR /app
 
-COPY target/*.jar app.jar
+COPY . .
 
-EXPOSE 8080
+RUN pip install -r requirements.txt
 
-ENTRYPOINT ["java","-jar","app.jar"]
+EXPOSE 5000
+
+CMD ["python", "app.py"]
