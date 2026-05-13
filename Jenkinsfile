@@ -5,7 +5,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git credentialsId: 'HariniGitID',
+                git branch: 'main',
+                credentialsId: 'HariniGitID',
                 url: 'https://github.com/Akshaya200617/Simple-Data-Visualizer.git'
             }
         }
