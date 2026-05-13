@@ -1,0 +1,27 @@
+pipeline {
+
+    agent any
+
+    stages {
+        stage('Build Application') {
+
+            steps {
+                bat 'mvn clean package'
+            }
+        }
+
+        stage('Build Docker Image') {
+
+            steps {
+                bat 'docker build -t online-shopping-app .'
+            }
+        }
+
+        stage('Run Docker Container') {
+
+            steps {
+                bat 'docker run -d -p 8080:8080 online-shopping-app'
+            }
+        }
+    }
+}
